@@ -1,0 +1,11 @@
+/* Styling the navigation bar */
+
+.navi, .navbar {
+	background-color: #8bd6a0 !important;
+}
+
+.navbar-brand {
+
+	color: black;
+	font-weight: bold;
+}

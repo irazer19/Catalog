@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<title>Catalog</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Creating the navigation bar -->
+<div class="container-fluid navi">
+    <nav class="navbar navbar-expand-sm bg-light">
+        <a href="#" class="navbar-brand">Catalog</a>
+        {% if session['email'] %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a href="{{ url_for('logout') }}"><button type="button" class="btn login">Logout</button></a>
+            </li>
+            <li class="nav-item"><img src="{{ session['picture'] }}" alt="#" width="42" height="37"></li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a href="{{ url_for('login') }}"><button type="button" class="btn login">Login</button></a>
+            </li>
+        </ul>
+        {% endif %}
+    </nav>
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="list-unstyled text-center">
+            {% for message in messages %}
+            <li>
+            <div class="alert alert-success alert-dismissable">
+             <button class="close" data-dismiss="alert" type="button">&times</button>
+            {{ message }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<!-- Creating the section for categories and latest items -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header text-center">Categories</div>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Books</a></li>
+                        <li><a href="#">Electronics</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Creating the Latest item section -->
+        <div class="col-sm-9">
+            <div class="card">
+                <div class="card-header">Latest Items</div>
+                <div class="card-body">
+                    <a href="#"><figure>
+                        <img src="/static/images/default-image.jpg" alt="#" width="200">
+                        <figcaption class="text-center">Default item</figcaption>
+                    </figure>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
