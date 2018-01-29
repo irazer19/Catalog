@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<title>Add item</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='add_item.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Creating the navigation bar -->
+<div class="container-fluid navi">
+    <nav class="navbar navbar-expand-sm bg-light">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Catalog</a>
+        {% if session['email'] %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a href="{{ url_for('logout') }}"><button type="button" class="btn login">Logout</button></a>
+            </li>
+            <li class="nav-item"><img src="{{ session['picture'] }}" alt="#" width="42" height="37"></li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a href="{{ url_for('login') }}"><button type="button" class="btn login">Login</button></a>
+            </li>
+        </ul>
+        {% endif %}
+    </nav>
+</div>
+
+<!-- Creating the Add item form -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-5 mx-auto">
+			<div class="card">
+				<div class="card-header">Add Item</div>
+				<div class="card-body">
+					{% from "_formhelper.html" import render_field %}
+					<form action="{{ url_for('add_item') }}" method="POST" enctype="multipart/form-data">
+						{{ form.hidden_tag() }}
+
+						{{ render_field(form.item_name, class="form-control") }}
+						{{ render_field(form.description, class="form-control") }}
+						{{ render_field(form.image, class="form-control") }}
+						{{ render_field(form.category, class="form-control") }}
+						{{ render_field(form.price, class="form-control") }}
+
+						<button class="btn login" type="submit">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

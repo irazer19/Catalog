@@ -15,6 +15,7 @@
         <a href="#" class="navbar-brand">Catalog</a>
         {% if session['email'] %}
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">Add item</button></a></li>
             <li class="nav-item">
             <a href="{{ url_for('logout') }}"><button type="button" class="btn login">Logout</button></a>
             </li>
@@ -52,9 +53,14 @@
                 <div class="card-header text-center">Categories</div>
                 <div class="card-body">
                     <ul>
-                        <li><a href="#">Sports</a></li>
-                        <li><a href="#">Books</a></li>
-                        <li><a href="#">Electronics</a></li>
+                        <li><a href="{{ url_for('category', name='Sports') }}">Sports</a></li>
+                        <li><a href="{{ url_for('category', name='Books') }}">Books</a></li>
+                        <li><a href="{{ url_for('category', name='Electronics') }}">Electronics</a></li>
+                        <li><a href="{{ url_for('category', name='Shoes') }}">Shoes</a></li>
+                        <li><a href="{{ url_for('category', name='Skincare') }}">Skincare</a></li>
+                        <li><a href="{{ url_for('category', name='Accessories') }}">Accessories</a></li>
+                        <li><a href="{{ url_for('category', name='Mobiles') }}">Mobiles</a></li>
+                        <li><a href="{{ url_for('category', name='Gift items') }}">Gift items</a></li>
                     </ul>
                 </div>
             </div>
@@ -64,11 +70,14 @@
             <div class="card">
                 <div class="card-header">Latest Items</div>
                 <div class="card-body">
-                    <a href="#"><figure>
-                        <img src="/static/images/default-image.jpg" alt="#" width="200">
-                        <figcaption class="text-center">Default item</figcaption>
+                    {% for item in items %}
+                    <a href="{{ url_for('item', cname=item.category, iname=item.item) }}" class="item">
+                    <figure>
+                        <img src="/static/images/{{ item.image }}" alt="#" width="200">
+                        <figcaption class="text-center">{{ item.item }}</figcaption>
                     </figure>
                     </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

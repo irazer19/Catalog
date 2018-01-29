@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<title>{{ iname }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='item.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+<!-- Creating the navigation bar -->
+<div class="container-fluid navi">
+    <nav class="navbar navbar-expand-sm bg-light">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Catalog</a>
+        {% if session['email'] %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">Add item</button></a></li>
+            <li class="nav-item">
+            <a href="{{ url_for('logout') }}"><button type="button" class="btn login">Logout</button></a>
+            </li>
+            <li class="nav-item"><img src="{{ session['picture'] }}" alt="#" width="42" height="37"></li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a href="{{ url_for('login') }}"><button type="button" class="btn login">Login</button></a>
+            </li>
+        </ul>
+        {% endif %}
+    </nav>
+</div>
+
+<!-- Creating the section for categories and latest items -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header text-center"><a href="{{ url_for('category', name=cname) }}">Categories</a> > {{ cname }}</div>
+                <div class="card-body">
+                    <ul>
+                        {% for item in items %}
+                        <li><a href="{{ url_for('item', cname=item.category, iname=item.item) }}">{{ item.item }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Creating the Latest item section -->
+        <div class="col-sm-9">
+            <div class="card">
+                <div class="card-header">{{ iname }}</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img src="/static/images/{{ itm.image }}" alt="#" width="200" class="item">
+                        </div>
+                        <div class="col-sm-9">
+                            <span>
+                            <h5>Description: </h5>
+                            <p>{{ itm.description }}</p>
+                            </span>
+                            <h5><i class="fa fa-inr"></i> {{ itm.price }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

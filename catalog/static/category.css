@@ -1,0 +1,66 @@
+/* Styling the Navbar */
+
+.navi, .navbar {
+	background-color: #8bd6a0 !important;
+}
+
+.login {
+
+	border-radius: 1px;
+	background-color: #c9fcd9;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.login:hover {
+	background-color: #00ff6f;
+}
+
+.navbar-brand {
+
+	color: black;
+	font-weight: bold;
+}
+
+.nav-item button {
+	margin-right: 20px;
+}
+
+a {
+	color: #10d365;
+}
+
+a:hover {
+	color: black;
+}
+
+/* Styling the content of the page */
+.active {
+
+	color: black;
+	text-decoration: none !important;
+	cursor: text;
+}
+
+.card {
+
+	margin-top: 15px;
+}
+
+.card-header {
+	font-weight: bold;
+	background-color: #c9fcd9;
+}
+
+/* Styling the category items */
+
+.item {
+	display: inline-block;
+	margin-left: 20px;
+	transition: transform 0.3s;
+}
+
+.item:hover {
+	transform: scale(1.1,1.1);
+}
+

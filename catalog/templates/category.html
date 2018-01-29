@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<title>Category</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='category.css') }}">
+<script src="{{ url_for('static', filename='category.js') }}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- Creating the navigation bar -->
+<div class="container-fluid navi">
+    <nav class="navbar navbar-expand-sm bg-light">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Catalog</a>
+        {% if session['email'] %}
+        <ul class="navbar-nav ml-auto">
+        	<li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">Add item</button></a></li>
+            <li class="nav-item">
+            <a href="{{ url_for('logout') }}"><button type="button" class="btn login">Logout</button></a>
+            </li>
+            <li class="nav-item"><img src="{{ session['picture'] }}" alt="#" width="42" height="37"></li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a href="{{ url_for('login') }}"><button type="button" class="btn login">Login</button></a>
+            </li>
+        </ul>
+        {% endif %}
+    </nav>
+</div>
+
+<!-- Flashing message -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="list-unstyled text-center">
+            {% for message in messages %}
+            <li>
+            <div class="alert alert-success alert-dismissable">
+             <button class="close" data-dismiss="alert" type="button">&times</button>
+            {{ message }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<!-- Creating the section for categories and latest items -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-header text-center">Categories</div>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="{{ url_for('category', name='Sports') }}" id="Sports">Sports</a></li>
+                        <li><a href="{{ url_for('category', name='Books') }}" id="Books">Books</a></li>
+                        <li><a href="{{ url_for('category', name='Electronics') }}" id="Electronics">Electronics</a></li>
+                        <li><a href="{{ url_for('category', name='Shoes') }}" id="Shoes">Shoes</a></li>
+                        <li><a href="{{ url_for('category', name='Skincare') }}" id="Skincare">Skincare</a></li>
+                        <li><a href="{{ url_for('category', name='Accessories') }}" id="Accessories">Accessories</a></li>
+                        <li><a href="{{ url_for('category', name='Mobiles') }}" id="Mobiles">Mobile</a></li>
+                        <li><a href="{{ url_for('category', name='Gift items') }}" id="Gift">Gift items</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Creating the specific category items section -->
+        <div class="col-sm-9">
+            <div class="card">
+                <div class="card-header" id="catName">{{ name }}</div>
+                <div class="card-body">
+                    {% for item in items %}
+                    <a href="{{ url_for('item', cname=item.category, iname=item.item) }}" class="item">
+                    <figure>
+                        <img src="/static/images/{{ item.image }}" alt="#" width="200">
+                        <figcaption class="text-center">{{ item.item }}</figcaption>
+                    </figure>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-from catalog import app
+from catalog import app, photos, db
 from flask import render_template, redirect, request, session as login_session, flash, url_for, make_response
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
@@ -7,6 +7,8 @@ import json
 import random
 import string
 import requests
+from user.forms import AddItem
+from user.models import Items
 
 CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
 
@@ -14,7 +16,9 @@ CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_i
 @app.route('/home')
 def home():
 
-    return render_template('home.html')
+    items = Items.query.order_by(Items.id.desc()).limit(4).all()
+
+    return render_template('home.html', items=items)
 
 
 @app.route('/login')
@@ -110,3 +114,55 @@ def logout():
 
     flash('You have been successfully logged out.')
     return redirect(url_for('home'))
+
+
+@app.route('/category/<name>')
+def category(name):
+
+    items = Items.query.filter_by(category=name).all()
+
+    return render_template('category.html', name=name, items=items)
+
+@app.route('/add_item', methods=['GET', 'POST'])
+def add_item():
+
+    form = AddItem()
+    if form.validate_on_submit():
+        # Uploading image if any.
+        filename = None
+        try:
+            filename = photos.save(request.files['image'])
+        except:
+            pass
+        # If not image was uploaded then assigning to default image
+        if not filename:
+            filename = 'default-image.jpg'
+
+        email = login_session['email']
+        item_name = form.item_name.data
+        description = form.description.data
+        category = form.category.data
+        price = form.price.data
+        # Creating the instance of the table and commiting the changes to the database.
+        item = Items(email, item_name, description, filename, category, price)
+        db.session.add(item)
+        db.session.commit()
+        flash(item_name + ' has been successfully added to the list.')
+
+        return redirect(url_for('category', name=category))
+
+
+    return render_template('add_item.html', form=form)
+
+
+@app.route('/category/<cname>/<iname>')
+def item(cname, iname):
+
+    items = Items.query.filter_by(category=cname).all()
+    itm = Items.query.filter_by(item=iname).first()
+
+    return render_template('item.html', 
+                            items=items, 
+                            cname=cname, 
+                            iname=iname, 
+                            itm=itm)

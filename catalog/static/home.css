@@ -48,6 +48,12 @@ a:hover {
 
 /* Styling the latest items */
 
-figure {
+.item {
 	display: inline-block;
+	margin-left: 20px;
+	transition: transform 0.3s;
+}
+
+.item:hover {
+	transform: scale(1.1,1.1);
 }
