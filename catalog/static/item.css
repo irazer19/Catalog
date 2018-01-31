@@ -126,4 +126,8 @@ li {
 		cursor: pointer;
 		margin-left: 25px;
 	}
+
+	h4 {
+		font-size: 1em;
+	}
 }

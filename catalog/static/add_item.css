@@ -26,6 +26,10 @@
 	margin-right: 20px;
 }
 
+li {
+	padding-bottom: 8px;
+}
+
 /*Styling the Categories section*/
 
 .card {

@@ -11,7 +11,7 @@
 <!-- Creating the navigation bar -->
 <div class="container-fluid navi">
     <nav class="navbar navbar-expand-sm navbar-dark">
-        <a href="#" class="navbar-brand">Catalog</a>
+        <a href="{{ url_for('home') }}" class="navbar-brand">Catalog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,8 @@
             {% else %}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                <a href="{{ url_for('login') }}"><button type="button" class="btn login">Login</button></a>
+                <a href="{{ url_for('login') }}"><button type="button" class="btn login">
+                <i class="fa fa-sign-in"></i> Login</button></a>
                 </li>
             </ul>
             {% endif %}

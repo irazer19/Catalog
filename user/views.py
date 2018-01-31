@@ -284,6 +284,8 @@ def delete(iname):
     db.session.delete(item)
     db.session.commit()
 
+    flash(iname + ' successfully deleted.')
+
     return redirect(url_for('category', name=cname))
 
 

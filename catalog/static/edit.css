@@ -26,6 +26,10 @@
 	margin-right: 20px;
 }
 
+li {
+	padding-bottom: 8px;
+}
+
 /*Styling the Categories section*/
 
 .card {
@@ -36,4 +40,9 @@
 .card-header {
 	font-weight: bold;
 	background-color: #c9fcd9;
+}
+
+.btn-block {
+	cursor: pointer;
+	border-radius: 1px;
 }
