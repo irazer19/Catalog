@@ -11,7 +11,7 @@
 
 <!-- Creating the navigation bar -->
 <div class="container-fluid navi">
-    <nav class="navbar navbar-expand-sm bg-light">
+    <nav class="navbar navbar-expand-sm navbar-dark">
         <a href="{{ url_for('home') }}" class="navbar-brand">Catalog</a>
     </nav>
 </div>
@@ -21,20 +21,24 @@
     <div class="row">
         <div class="col-sm-4 mx-auto">
             <div class="card">
-                <div class="card-header">Login</div>
+                <div class="card-header text-center">Login using Gmail</div>
                 <div class="card-body">
-                    <div id="signinButton">
-                        <span class="g-signin"
-                            data-scope="openid email"
-                            data-clientid="636400424383-o7umedne3c81ddfev9ktom2p762aiju5.apps.googleusercontent.com"
-                            data-redirecturi="postmessage"
-                            data-accesstype="offline"
-                            data-cookiepolicy="single_host_origin"
-                            data-callback="signInCallback"
-                            data-approvalprompt="force">
-                        </span>
+                    <div class="row">
+                        <div class="col-sm-5 mx-auto col-5">
+                            <div id="signinButton">
+                                <span class="g-signin"
+                                    data-scope="openid email"
+                                    data-clientid="636400424383-o7umedne3c81ddfev9ktom2p762aiju5.apps.googleusercontent.com"
+                                    data-redirecturi="postmessage"
+                                    data-accesstype="offline"
+                                    data-cookiepolicy="single_host_origin"
+                                    data-callback="signInCallback"
+                                    data-approvalprompt="force">
+                                </span>
+                            </div>
+                            <div id="result"></div>
+                        </div>
                     </div>
-                    <div id="result"></div>
                 </div>
             </div>
         </div>

@@ -6,6 +6,15 @@
 
 .navbar-brand {
 
-	color: black;
+	color: black !important;
+	font-weight: bold;
+}
+
+.card {
+	margin-top: 20px;
+}
+
+.card-header {
+	background-color: #c9fcd9;
 	font-weight: bold;
 }

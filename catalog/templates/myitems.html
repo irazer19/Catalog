@@ -1,9 +1,8 @@
 {% extends "base.html" %}
-
 {% block head %}
 
-<title>Add item</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='add_item.css') }}">
+<title>My items</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='myitems.css') }}">
 
 {% endblock %}
 
@@ -38,27 +37,29 @@
     </nav>
 </div>
 
-<!-- Creating the Add item form -->
-
 <div class="container">
 	<div class="row">
-		<div class="col-sm-5 mx-auto">
+		<div class="col-sm-11 mx-auto">
 			<div class="card">
-				<div class="card-header">Add Item</div>
-				<div class="card-body">
-					{% from "_formhelper.html" import render_field %}
-					<form action="{{ url_for('add_item') }}" method="POST" enctype="multipart/form-data">
-						{{ form.hidden_tag() }}
-
-						{{ render_field(form.item_name, class="form-control") }}
-						{{ render_field(form.description, class="form-control") }}
-						{{ render_field(form.image, class="form-control") }}
-						{{ render_field(form.category, class="form-control") }}
-						{{ render_field(form.price, class="form-control") }}
-
-						<button class="btn btn-block btn-success" type="submit">Submit</button>
-					</form>
+				<div class="card-header text-center">
+					<h4 class="card-title">My Items ({{ total }})</h4>
 				</div>
+				{% if items %}
+				<div class="card-body">
+                    {% for item in items %}
+                    <a href="{{ url_for('item', cname=item.category, iname=item.item) }}" class="item">
+                    <figure>
+                        <img src="/static/images/{{ item.image }}" alt="#" width="200">
+                        <figcaption class="text-center">{{ item.item }}</figcaption>
+                    </figure>
+                    </a>
+                    {% endfor %}
+				</div>
+				{% else %}
+				<div class="jumbotron text-center">
+					<h3>Oops! It's Empty <i class="fa fa-battery-quarter"></i></h3>
+				</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>

@@ -11,23 +11,30 @@
 
 <!-- Creating the navigation bar -->
 <div class="container-fluid navi">
-    <nav class="navbar navbar-expand-sm bg-light">
-        <a href="{{ url_for('home') }}" class="navbar-brand">Catalog</a>
-        {% if session['email'] %}
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">Add item</button></a></li>
-            <li class="nav-item">
-            <a href="{{ url_for('logout') }}"><button type="button" class="btn login">Logout</button></a>
-            </li>
-            <li class="nav-item"><img src="{{ session['picture'] }}" alt="#" width="42" height="37"></li>
-        </ul>
-        {% else %}
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-            <a href="{{ url_for('login') }}"><button type="button" class="btn login">Login</button></a>
-            </li>
-        </ul>
-        {% endif %}
+    <nav class="navbar navbar-expand-sm navbar-dark">
+        <a href="#" class="navbar-brand">Catalog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            {% if session['email'] %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">
+                <i class="fa fa-caret-down"></i> Add item</button></a></li>
+                <li class="nav-item">
+                <a href="{{ url_for('logout') }}"><button type="button" class="btn login">
+                <i class="fa fa-sign-out"></i> Logout</button></a>
+                </li>
+                <li class="nav-item"><img src="{{ session['picture'] }}" alt="#" width="42" height="37"></li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                <a href="{{ url_for('login') }}"><button type="button" class="btn login">Login</button></a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
     </nav>
 </div>
 
@@ -36,8 +43,9 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="card">
-                <div class="card-header text-center"><a href="{{ url_for('category', name=cname) }}">Categories</a> > {{ cname }}</div>
-                <div class="card-body">
+                <div class="card-header text-center"><a href="{{ url_for('category', name=cname) }}">
+                <i class="fa fa-list"></i> &nbsp Category</a> > {{ cname }}</div>
+                <div class="card-body lists">
                     <ul>
                         {% for item in items %}
                         <li><a href="{{ url_for('item', cname=item.category, iname=item.item) }}">{{ item.item }}</a></li>
@@ -45,6 +53,10 @@
                     </ul>
                 </div>
             </div>
+            {% if 'email' in session %}
+            <!-- Creating the My Items section -->
+            <a href="{{ url_for('myitems') }}" class="myitems"><button class="btn btn-success btn-block">My items</button></a>
+            {% endif %}
         </div>
         <!-- Creating the Latest item section -->
         <div class="col-sm-9">
@@ -59,8 +71,38 @@
                             <span>
                             <h5>Description: </h5>
                             <p>{{ itm.description }}</p>
-                            </span>
                             <h5><i class="fa fa-inr"></i> {{ itm.price }}</h5>
+                            </span>
+                            {% if session['email'] == itm.email %}
+                            <div class="row editDel">
+                                <div class="col-sm-2 col-2">
+                                    <a href="{{ url_for('edit', iname=iname) }}"><button class="btn edit btn-info">Edit</button></a>
+                                </div>
+                                <div class="col-sm-3 col-3">
+                                    <button class="btn delete btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+                                    <div class="modal fade" id="myModal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title text-center">Confirm delete {{ iname }} ?</h4>
+                                                </div>
+                                                <!--Modal body-->
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <a href="{{ url_for('delete', iname=iname) }}" class="float-right"><button class="btn delete btn-danger">Delete</button></a>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <button class="btn cancel btn-info" data-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

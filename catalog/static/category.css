@@ -18,7 +18,7 @@
 
 .navbar-brand {
 
-	color: black;
+	color: black !important;
 	font-weight: bold;
 }
 
@@ -27,11 +27,19 @@
 }
 
 a {
-	color: #10d365;
+	color: #24a560;
 }
 
 a:hover {
 	color: black;
+}
+
+li {
+	padding-bottom: 8px;
+}
+
+.lists {
+	padding-bottom: 0px;
 }
 
 /* Styling the content of the page */
@@ -62,5 +70,14 @@ a:hover {
 
 .item:hover {
 	transform: scale(1.1,1.1);
+}
+
+.btn-block {
+	margin-top: 15px;
+	cursor: pointer;
+}
+
+.myitems {
+	text-decoration: none !important;
 }
 

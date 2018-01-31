@@ -18,7 +18,7 @@
 
 .navbar-brand {
 
-	color: black;
+	color: black !important;
 	font-weight: bold;
 }
 
@@ -44,12 +44,24 @@
 	color: black;
 }
 
+.card-body {
+	background-color: #f7f7f7;
+}
+
 a {
-	color: #10d365;
+	color: #24a560;
 }
 
 a:hover {
 	color: black;
+}
+
+li {
+	padding-bottom: 8px;
+}
+
+.lists {
+	padding-bottom: 0px;
 }
 
 .item {
@@ -60,4 +72,58 @@ a:hover {
 
 .item:hover {
 	transform: scale(2,2);
+}
+
+.edit {
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 1px;
+	cursor: pointer;
+}
+
+.cancel {
+	border-radius: 1px;
+}
+
+.delete {
+	margin-left: -15px;
+	border-radius: 1px;
+	cursor: pointer;
+}
+
+.editDel {
+	margin-top: 25px;
+	cursor: pointer;
+}
+
+.modal-header {
+	background-color: #8bd6a0;
+}
+
+.modal-body {
+	background-color: #e0e0e0;
+	padding-bottom: 30px !important;
+	padding-top: 20px;
+}
+
+.modal-title {
+	margin-left: 20%
+}
+
+.btn-block {
+	margin-top: 15px;
+	cursor: pointer;
+}
+
+.myitems {
+	text-decoration: none !important;
+}
+
+@media screen and (max-width: 950px) {
+	
+	.delete {
+		border-radius: 1px;
+		cursor: pointer;
+		margin-left: 25px;
+	}
 }

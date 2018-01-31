@@ -2,7 +2,7 @@
 
 {% block head %}
 
-<title>Add item</title>
+<title>Edit item</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='add_item.css') }}">
 
 {% endblock %}
@@ -44,10 +44,10 @@
 	<div class="row">
 		<div class="col-sm-5 mx-auto">
 			<div class="card">
-				<div class="card-header">Add Item</div>
+				<div class="card-header">Edit Item</div>
 				<div class="card-body">
 					{% from "_formhelper.html" import render_field %}
-					<form action="{{ url_for('add_item') }}" method="POST" enctype="multipart/form-data">
+					<form action="{{ url_for('edit', iname=iname) }}" method="POST" enctype="multipart/form-data">
 						{{ form.hidden_tag() }}
 
 						{{ render_field(form.item_name, class="form-control") }}
@@ -56,7 +56,7 @@
 						{{ render_field(form.category, class="form-control") }}
 						{{ render_field(form.price, class="form-control") }}
 
-						<button class="btn btn-block btn-success" type="submit">Submit</button>
+						<button class="btn login" type="submit">Submit</button>
 					</form>
 				</div>
 			</div>

@@ -12,23 +12,30 @@
 
 <!-- Creating the navigation bar -->
 <div class="container-fluid navi">
-    <nav class="navbar navbar-expand-sm bg-light">
-        <a href="{{ url_for('home') }}" class="navbar-brand">Catalog</a>
-        {% if session['email'] %}
-        <ul class="navbar-nav ml-auto">
-        	<li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">Add item</button></a></li>
-            <li class="nav-item">
-            <a href="{{ url_for('logout') }}"><button type="button" class="btn login">Logout</button></a>
-            </li>
-            <li class="nav-item"><img src="{{ session['picture'] }}" alt="#" width="42" height="37"></li>
-        </ul>
-        {% else %}
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-            <a href="{{ url_for('login') }}"><button type="button" class="btn login">Login</button></a>
-            </li>
-        </ul>
-        {% endif %}
+    <nav class="navbar navbar-expand-sm navbar-dark">
+        <a href="#" class="navbar-brand">Catalog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            {% if session['email'] %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">
+                <i class="fa fa-caret-down"></i> Add item</button></a></li>
+                <li class="nav-item">
+                <a href="{{ url_for('logout') }}"><button type="button" class="btn login">
+                <i class="fa fa-sign-out"></i> Logout</button></a>
+                </li>
+                <li class="nav-item"><img src="{{ session['picture'] }}" alt="#" width="42" height="37"></li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                <a href="{{ url_for('login') }}"><button type="button" class="btn login">Login</button></a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
     </nav>
 </div>
 
@@ -52,20 +59,24 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="card">
-                <div class="card-header text-center">Categories</div>
-                <div class="card-body">
+                <div class="card-header text-center"><i class="fa fa-list"></i> &nbsp Category</div>
+                <div class="card-body lists">
                     <ul>
-                        <li><a href="{{ url_for('category', name='Sports') }}" id="Sports">Sports</a></li>
-                        <li><a href="{{ url_for('category', name='Books') }}" id="Books">Books</a></li>
-                        <li><a href="{{ url_for('category', name='Electronics') }}" id="Electronics">Electronics</a></li>
-                        <li><a href="{{ url_for('category', name='Shoes') }}" id="Shoes">Shoes</a></li>
-                        <li><a href="{{ url_for('category', name='Skincare') }}" id="Skincare">Skincare</a></li>
-                        <li><a href="{{ url_for('category', name='Accessories') }}" id="Accessories">Accessories</a></li>
-                        <li><a href="{{ url_for('category', name='Mobiles') }}" id="Mobiles">Mobile</a></li>
-                        <li><a href="{{ url_for('category', name='Gift items') }}" id="Gift">Gift items</a></li>
+                        <li><a href="{{ url_for('category', name='Sports') }}">Sports ({{sports}})</a></li>
+                        <li><a href="{{ url_for('category', name='Books') }}">Books ({{books}})</a></li>
+                        <li><a href="{{ url_for('category', name='Electronics') }}">Electronics ({{electronics}})</a></li>
+                        <li><a href="{{ url_for('category', name='Shoes') }}">Shoes ({{shoes}})</a></li>
+                        <li><a href="{{ url_for('category', name='Skincare') }}">Skincare ({{skincare}})</a></li>
+                        <li><a href="{{ url_for('category', name='Accessories') }}">Accessories ({{accessories}})</a></li>
+                        <li><a href="{{ url_for('category', name='Mobiles') }}">Mobiles ({{mobiles}})</a></li>
+                        <li><a href="{{ url_for('category', name='Gift items') }}">Gift items ({{gifts}})</a></li>
                     </ul>
                 </div>
             </div>
+            {% if 'email' in session %}
+            <!-- Creating My items section -->
+            <a href="{{ url_for('myitems') }}" class="myitems"><button class="btn btn-success btn-block">My items</button></a>
+            {% endif %}
         </div>
         <!-- Creating the specific category items section -->
         <div class="col-sm-9">

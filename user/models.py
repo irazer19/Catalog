@@ -10,6 +10,7 @@ class Items(db.Model):
     category = db.Column(db.String, nullable=False)
     price = db.Column(db.String, nullable=False)
 
+
     def __init__(self, email, item, description, image, category, price):
 
         self.email = email
@@ -18,6 +19,18 @@ class Items(db.Model):
         self.image = image
         self.category = category
         self.price = price
+
+
+    @property
+    def serialize(self):
+
+        return { 'id': self.id,
+                 'item': self.item,
+                 'description': self.description,
+                 'image': self.image,
+                 'category': self.category,
+                 'price': self.price }
+
 
     def __repr__(self):
 

@@ -58,7 +58,7 @@ li {
 
 .item {
 	display: inline-block;
-	margin-left: 20px;
+	margin-left: 28px;
 	transition: transform 0.3s;
 }
 
@@ -66,11 +66,6 @@ li {
 	transform: scale(1.1,1.1);
 }
 
-.btn-block {
-	margin-top: 15px;
-	cursor: pointer;
-}
-
-.myitems {
-	text-decoration: none !important;
+.jumbotron {
+	background-color: white;
 }
