@@ -18,6 +18,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="myNavbar">
+            <!-- Checking if the user is already logged in -->
             {% if session['email'] %}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">
@@ -61,6 +62,7 @@
         <div class="col-sm-3">
             <div class="card">
                 <div class="card-header text-center"><i class="fa fa-list"></i> &nbsp Category</div>
+                <!-- Displaying all the categories -->
                 <div class="card-body lists">
                     <ul>
                         <li><a href="{{ url_for('category', name='Sports') }}">Sports ({{sports}})</a></li>
@@ -79,7 +81,7 @@
             <a href="{{ url_for('myitems') }}" class="myitems"><button class="btn btn-success btn-block">My items</button></a>
             {% endif %}
         </div>
-        <!-- Creating the specific category items section -->
+        <!-- Displaying all the items that belong to the given category -->
         <div class="col-sm-9">
             <div class="card">
                 <div class="card-header" id="catName">{{ name }}</div>

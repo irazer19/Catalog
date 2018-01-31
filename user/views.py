@@ -1,3 +1,6 @@
+''' This module renders all the pages in the app and handles 
+    all the views/backend portion of the app '''
+
 from catalog import app, photos, db
 from flask import render_template, redirect, request, session as login_session, flash, url_for, make_response, jsonify, abort  # NOQA
 from oauth2client.client import flow_from_clientsecrets
@@ -232,6 +235,8 @@ def item(cname, iname):
 @app.route('/myitems')
 @login_required
 def myitems():
+    ''' This function is the dashboard of the logged user that
+        displays all the items added by the user '''
 
     items = []
     user = login_session['email']
@@ -240,10 +245,13 @@ def myitems():
 
     return render_template('myitems.html', items=items, total=total)
 
+
 @app.route('/edit/<iname>', methods=['GET', 'POST'])
 @login_required
 @is_author
 def edit(iname):
+    ''' This function renders the edit page for updated the contents
+        of the item '''
 
     item = Items.query.filter_by(item=iname).first()
     filename = None
@@ -253,10 +261,12 @@ def edit(iname):
                    category=item.category,
                    price=item.price)
 
+    # Validates the form and updating the item info
     if form.validate_on_submit():
 
         item.item = form.item_name.data
         item.description = form.description.data
+        # Trying to save the item image
         try:
             filename = photos.save(request.files['image'])
             item.image = filename
@@ -278,6 +288,7 @@ def edit(iname):
 @login_required
 @is_author
 def delete(iname):
+    ''' This function deletes the specified item from the database '''
 
     item = Items.query.filter_by(item=iname).first()
     cname = item.category
@@ -291,6 +302,8 @@ def delete(iname):
 
 @app.route('/api/catalog')
 def api():
+    ''' This function is a json endpoint that will return a json object with
+        all the contents of the database '''
 
     items = Items.query.all()
 

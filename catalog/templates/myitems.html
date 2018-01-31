@@ -16,6 +16,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="myNavbar">
+            <!-- Checking if the user is logged in -->
             {% if session['email'] %}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">
@@ -38,15 +39,16 @@
     </nav>
 </div>
 
+<!-- Displaying all the items created by the current user -->
 <div class="container">
-	<div class="row">
-		<div class="col-sm-11 mx-auto">
-			<div class="card">
-				<div class="card-header text-center">
-					<h4 class="card-title">My Items ({{ total }})</h4>
-				</div>
-				{% if items %}
-				<div class="card-body">
+    <div class="row">
+        <div class="col-sm-11 mx-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4 class="card-title">My Items ({{ total }})</h4>
+                </div>
+                {% if items %}
+                <div class="card-body">
                     {% for item in items %}
                     <a href="{{ url_for('item', cname=item.category, iname=item.item) }}" class="item">
                     <figure>
@@ -55,15 +57,15 @@
                     </figure>
                     </a>
                     {% endfor %}
-				</div>
-				{% else %}
-				<div class="jumbotron text-center">
-					<h3>Oops! It's Empty <i class="fa fa-battery-quarter"></i></h3>
-				</div>
-				{% endif %}
-			</div>
-		</div>
-	</div>
+                </div>
+                {% else %}
+                <div class="jumbotron text-center">
+                    <h3>Oops! It's Empty <i class="fa fa-battery-quarter"></i></h3>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

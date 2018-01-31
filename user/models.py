@@ -1,6 +1,11 @@
+''' This module creates the models/tables in the database 
+    catalog using sqlalchemy '''
+
 from catalog import db
 
+
 class Items(db.Model):
+    ''' Model to store all the information about an item '''
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String)
@@ -23,6 +28,8 @@ class Items(db.Model):
 
     @property
     def serialize(self):
+        ''' Function to return a json object for each 
+            instance of the class Items '''
 
         return { 'id': self.id,
                  'item': self.item,
@@ -33,5 +40,6 @@ class Items(db.Model):
 
 
     def __repr__(self):
+        ''' Functon to represent the class instance '''
 
         return '<item {}>'.format(self.item)

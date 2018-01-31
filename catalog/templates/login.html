@@ -51,12 +51,14 @@
         if(authResult['code']) {
             $('#signinButton').attr("style","display:none");
 
+            // Making an ajax call and posting auth code to the server
             $.ajax({
                 type:'POST',
                 url:'/gconnect?state={{STATE}}',
                 processData:false,
                 data:authResult['code'],
                 contentType:'application/octet-stream; charset=utf-8',
+                // Redirecting user after logging in
                 success:function(result) {
                 if (result) {
                     $('#result').html(result)

@@ -17,6 +17,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="myNavbar">
+            <!-- Checking if the user is already logged in  -->
             {% if session['email'] %}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">
@@ -39,6 +40,7 @@
     </nav>
 </div>
 
+<!-- Displaying the flash messages -->
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         <ul class="list-unstyled text-center">
@@ -59,6 +61,7 @@
         <div class="col-sm-3">
             <div class="card">
                 <div class="card-header text-center"><i class="fa fa-list"></i> &nbsp Category</div>
+                <!-- Displaying all the categories -->
                 <div class="card-body lists">
                     <ul>
                         <li><a href="{{ url_for('category', name='Sports') }}">Sports ({{sports}})</a></li>

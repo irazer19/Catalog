@@ -1,133 +1,157 @@
 /* Styling the Navbar */
 
 .navi, .navbar {
-	background-color: #8bd6a0 !important;
+
+    background-color: #8bd6a0 !important;
 }
 
 .login {
 
-	border-radius: 1px;
-	background-color: #c9fcd9;
-	cursor: pointer;
-	font-weight: bold;
+    border-radius: 1px;
+    background-color: #c9fcd9;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .login:hover {
-	background-color: #00ff6f;
+
+    background-color: #00ff6f;
 }
 
 .navbar-brand {
 
-	color: black !important;
-	font-weight: bold;
+    color: black !important;
+    font-weight: bold;
 }
 
 .nav-item button {
-	margin-right: 20px;
+
+    margin-right: 20px;
 }
 
 /*Styling the Categories section*/
 
 .card {
 
-	margin-top: 15px;
+    margin-top: 15px;
 }
 
 .card-header {
-	font-weight: bold;
-	background-color: #c9fcd9;
+
+    font-weight: bold;
+    background-color: #c9fcd9;
 }
 
 .card-header a {
 
-	text-decoration: none !important;
-	color: black;
+    text-decoration: none !important;
+    color: black;
 }
 
 .card-body {
-	background-color: #f7f7f7;
+
+    background-color: #f7f7f7;
 }
 
 a {
-	color: #24a560;
+    color: #24a560;
 }
 
 a:hover {
-	color: black;
+
+    color: black;
 }
 
 li {
-	padding-bottom: 8px;
+
+    padding-bottom: 8px;
 }
 
 .lists {
-	padding-bottom: 0px;
+
+    padding-bottom: 0px;
 }
 
+/* Styling a specific item */
+
 .item {
-	display: inline-block;
-	margin-left: 20px;
-	transition: transform 0.3s;
+
+    display: inline-block;
+    margin-left: 20px;
+    transition: transform 0.3s;
 }
 
 .item:hover {
-	transform: scale(2,2);
+
+    transform: scale(2,2);
 }
 
 .edit {
-	padding-left: 20px;
-	padding-right: 20px;
-	border-radius: 1px;
-	cursor: pointer;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 1px;
+    cursor: pointer;
 }
 
 .cancel {
-	border-radius: 1px;
+
+    border-radius: 1px;
 }
 
 .delete {
-	margin-left: -15px;
-	border-radius: 1px;
-	cursor: pointer;
+
+    margin-left: -15px;
+    border-radius: 1px;
+    cursor: pointer;
 }
 
 .editDel {
-	margin-top: 25px;
-	cursor: pointer;
+
+    margin-top: 25px;
+    cursor: pointer;
 }
 
 .modal-header {
-	background-color: #8bd6a0;
+
+    background-color: #8bd6a0;
 }
 
 .modal-body {
-	background-color: #e0e0e0;
-	padding-bottom: 30px !important;
-	padding-top: 20px;
+
+    background-color: #e0e0e0;
+    padding-bottom: 30px !important;
+    padding-top: 20px;
 }
 
 .modal-title {
-	margin-left: 20%
+
+    margin-left: 20%
 }
 
 .btn-block {
-	margin-top: 15px;
-	cursor: pointer;
+
+    margin-top: 15px;
+    cursor: pointer;
 }
 
 .myitems {
-	text-decoration: none !important;
+
+    text-decoration: none !important;
 }
 
+/* Making it responsive */
 @media screen and (max-width: 950px) {
-	
-	.delete {
-		border-radius: 1px;
-		cursor: pointer;
-		margin-left: 25px;
-	}
+    
+    .delete {
 
-	h4 {
-		font-size: 1em;
-	}
+        border-radius: 1px;
+        cursor: pointer;
+        margin-left: 25px;
+    }
+
+    h4 {
+
+        font-size: 1em;
+    }
 }

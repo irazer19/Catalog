@@ -1,20 +1,23 @@
 /* Styling the navigation bar */
 
 .navi, .navbar {
-	background-color: #8bd6a0 !important;
+
+    background-color: #8bd6a0 !important;
 }
 
 .navbar-brand {
 
-	color: black !important;
-	font-weight: bold;
+    color: black !important;
+    font-weight: bold;
 }
 
 .card {
-	margin-top: 20px;
+
+    margin-top: 20px;
 }
 
 .card-header {
-	background-color: #c9fcd9;
-	font-weight: bold;
+
+    background-color: #c9fcd9;
+    font-weight: bold;
 }

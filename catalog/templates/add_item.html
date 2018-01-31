@@ -17,6 +17,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="myNavbar">
+            <!-- Checking if the user is already logged in -->
             {% if session['email'] %}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">
@@ -39,29 +40,29 @@
 </div>
 
 <!-- Creating the Add item form -->
-
 <div class="container">
-	<div class="row">
-		<div class="col-sm-5 mx-auto">
-			<div class="card">
-				<div class="card-header">Add Item</div>
-				<div class="card-body">
-					{% from "_formhelper.html" import render_field %}
-					<form action="{{ url_for('add_item') }}" method="POST" enctype="multipart/form-data">
-						{{ form.hidden_tag() }}
+    <div class="row">
+        <div class="col-sm-5 mx-auto">
+            <div class="card">
+                <div class="card-header">Add Item</div>
+                <div class="card-body">
+                    <!-- Using form macro to render all the form fields -->
+                    {% from "_formhelper.html" import render_field %}
+                    <form action="{{ url_for('add_item') }}" method="POST" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
 
-						{{ render_field(form.item_name, class="form-control") }}
-						{{ render_field(form.description, class="form-control") }}
-						{{ render_field(form.image, class="form-control") }}
-						{{ render_field(form.category, class="form-control") }}
-						{{ render_field(form.price, class="form-control") }}
+                        {{ render_field(form.item_name, class="form-control") }}
+                        {{ render_field(form.description, class="form-control") }}
+                        {{ render_field(form.image, class="form-control") }}
+                        {{ render_field(form.category, class="form-control") }}
+                        {{ render_field(form.price, class="form-control") }}
 
-						<button class="btn btn-block btn-success" type="submit">Submit</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <button class="btn btn-block btn-success" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

@@ -17,6 +17,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="myNavbar">
+            <!-- Checking if the user is logged in  -->
             {% if session['email'] %}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="{{ url_for('add_item') }}"><button type="button" class="btn login">
@@ -39,6 +40,7 @@
     </nav>
 </div>
 
+<!-- Displaying the flash message -->
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         <ul class="list-unstyled text-center">
@@ -88,12 +90,14 @@
                             <p>{{ itm.description }}</p>
                             <h5><i class="fa fa-inr"></i> {{ itm.price }}</h5>
                             </span>
+                            <!-- Displayng the edit and delete buttons only if the user is the owner of it. -->
                             {% if session['email'] == itm.email %}
                             <div class="row editDel">
                                 <div class="col-sm-2 col-2">
                                     <a href="{{ url_for('edit', iname=iname) }}"><button class="btn edit btn-info">Edit</button></a>
                                 </div>
                                 <div class="col-sm-3 col-3">
+                                    <!-- Creating a modal for deleting the item -->
                                     <button class="btn delete btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
                                     <div class="modal fade" id="myModal">
                                         <div class="modal-dialog">
