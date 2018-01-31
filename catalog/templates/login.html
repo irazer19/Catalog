@@ -50,6 +50,7 @@
     function signInCallback(authResult) {
         if(authResult['code']) {
             $('#signinButton').attr("style","display:none");
+            $('#result').html('<h6 class="text-success">Logging in..</h6>')
 
             // Making an ajax call and posting auth code to the server
             $.ajax({

@@ -308,3 +308,15 @@ def api():
     items = Items.query.all()
 
     return jsonify(item=[ i.serialize for i in items])
+
+
+@app.route('/api/catalog/<iname>')
+def apiItem(iname):
+    ''' This function returns the content of the specified item as
+        a json object'''
+
+    item = Items.query.filter_by(item=iname).first()
+    if item:
+        return jsonify(item=item.serialize)
+    else:
+        return jsonify(error='No such item')
