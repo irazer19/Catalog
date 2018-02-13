@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from flask_uploads import UploadSet, IMAGES, configure_uploads
 
 
+
 app = Flask(__name__)
 app.config.from_object('settings')
 
